@@ -21,7 +21,7 @@ class Lesson(db.Model):
     description: Mapped[str] = mapped_column()
     age_rating: Mapped[Age] = mapped_column(sqlEnum(Age), default=Age.pegi18)
     creator_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
-    thumbnail: Mapped[str] = mapped_column()
+    thumbnail: Mapped[str] = mapped_column(default="placeholder.png")
     creator: Mapped["User"] = relationship(back_populates="created_lessons")
     blocks: Mapped[List["Block"]] = relationship(back_populates="lesson")
     users: Mapped[List["User"]] = relationship(
