@@ -17,7 +17,7 @@ class User(db.Model):
     salt: Mapped[str] = mapped_column()
     email: Mapped[str] = mapped_column()
     date_of_birth: Mapped[date]
-    avatar: Mapped[str] = mapped_column()
+    avatar: Mapped[str] = mapped_column(default="default-avatar.png")
     created_lessons: Mapped[List["Lesson"]] = relationship(back_populates="creator")
     lessons: Mapped[List["Lesson"]] = relationship(
         secondary=user_lesson, back_populates="users"

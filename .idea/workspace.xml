@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="490aa362-9997-460d-9427-5eaeca575b00" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0e74930e-431d-4752-96de-ada3ea4777af.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0e74930e-431d-4752-96de-ada3ea4777af.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f7704cdd-f20f-4707-9430-45f932a80d9e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f7704cdd-f20f-4707-9430-45f932a80d9e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/models/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/models/lesson.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/models/lesson.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/models/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/project_future_school.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/database/project_future_school.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_session/2029240f6d1128be89ddc32729463129" beforeDir="false" afterPath="$PROJECT_DIR$/flask_session/2029240f6d1128be89ddc32729463129" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/lesson_creation.py" beforeDir="false" afterPath="$PROJECT_DIR$/routes/lesson_creation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +153,8 @@
       <updated>1709586038617</updated>
       <workItem from="1709586041298" duration="2322000" />
       <workItem from="1709748943575" duration="458000" />
-      <workItem from="1709795616924" duration="37463000" />
+      <workItem from="1709795616924" duration="37605000" />
+      <workItem from="1709924107663" duration="11503000" />
     </task>
     <servers />
   </component>
@@ -155,7 +162,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/flaskProject$flaskProject.coverage" NAME="flaskProject Coverage Results" MODIFIED="1709825909615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/flaskProject$flaskProject.coverage" NAME="flaskProject Coverage Results" MODIFIED="1709939278256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/flaskProject$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1709819633621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -2,7 +2,7 @@ from flask import Flask, Response, jsonify, render_template
 from database import db
 import database.models as models
 from os import path
-from routes import authentication
+from routes import authentication, lesson_creation
 from secrets import token_urlsafe
 from flask_session import Session as ServerSideSession
 
@@ -33,6 +33,7 @@ class myResponse(Response):
 app.response_class = myResponse
 
 app.register_blueprint(authentication)
+app.register_blueprint(lesson_creation)
 
 
 app.config["SESSION_PERMANENT"] = False

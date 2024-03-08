@@ -23,7 +23,9 @@ class Lesson(db.Model):
     creator_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
     thumbnail: Mapped[str] = mapped_column(default="placeholder.png")
     creator: Mapped["User"] = relationship(back_populates="created_lessons")
-    blocks: Mapped[List["Block"]] = relationship(back_populates="lesson")
+    blocks: Mapped[List["Block"]] = relationship(
+        back_populates="lesson", cascade="all, delete-orphan"
+    )
     users: Mapped[List["User"]] = relationship(
         secondary=user_lesson, back_populates="lessons"
     )
