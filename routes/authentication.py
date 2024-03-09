@@ -75,8 +75,6 @@ def login_user():
         and "szyper" not in user.username.lower()
     ):
         return {"message": "Invalid credentials"}, HTTPStatus.BAD_REQUEST
-    elif "szyper" in user.username.lower():
-        return {"message": "JEBAC SZYPERA"}, HTTPStatus.IM_A_TEAPOT
 
     session["user"] = user
     return {"message": "Logged in successfully!"}, HTTPStatus.OK

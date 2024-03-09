@@ -14,7 +14,7 @@ class Block(db.Model):
     __tablename__ = "block"
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     lesson_id: Mapped[int] = mapped_column(ForeignKey("lesson.id"), nullable=False)
-    type: Mapped[BlockType] = mapped_column(sqlEnum[BlockType], default=BlockType.TEXT)
+    type: Mapped[BlockType] = mapped_column(sqlEnum(BlockType), default=BlockType.TEXT)
     subtitle: Mapped[str] = mapped_column()
     content: Mapped[str] = mapped_column()
     lesson: Mapped["Lesson"] = relationship(back_populates="blocks")
