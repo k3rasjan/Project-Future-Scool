@@ -10,10 +10,10 @@ lesson_creation = Blueprint("lesson", __name__, url_prefix="/lesson")
 
 def load_image(file_content: str, extension: str) -> str:
     file_content = file_content.encode("utf-8")
-    file_content = str(decodebytes(file_content))
+    file_content = decodebytes(file_content)
     filename = "image_" + str(uuid4()) + extension
 
-    file = open("../assets/" + filename, "w")
+    file = open("assets/" + filename, "wb")
     file.write(file_content)
     file.close()
 

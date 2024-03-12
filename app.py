@@ -1,10 +1,10 @@
 from flask import Flask, Response, jsonify, render_template
 from database import db
-import database.models as models
 from os import path
-from routes import authentication, lesson_creation
+from routes import authentication, lesson_creation, fetching_data
 from secrets import token_urlsafe
 from flask_session import Session as ServerSideSession
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + path.abspath(
@@ -16,6 +16,8 @@ db.init_app(app)
 
 with app.app_context():
     db.create_all()
+
+CORS(app)
 
 
 class myResponse(Response):
@@ -34,7 +36,7 @@ app.response_class = myResponse
 
 app.register_blueprint(authentication)
 app.register_blueprint(lesson_creation)
-
+app.register_blueprint(fetching_data)
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
