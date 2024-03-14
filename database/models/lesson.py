@@ -22,6 +22,7 @@ class Lesson(db.Model):
     age_rating: Mapped[Age] = mapped_column(sqlEnum(Age), default=Age.pegi18)
     creator_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
     thumbnail: Mapped[str] = mapped_column(default="placeholder.png")
+    views: Mapped[int] = mapped_column(default=0)
     creator: Mapped["User"] = relationship(back_populates="created_lessons")
     blocks: Mapped[List["Block"]] = relationship(
         back_populates="lesson", cascade="all, delete-orphan"
@@ -29,6 +30,17 @@ class Lesson(db.Model):
     users: Mapped[List["User"]] = relationship(
         secondary=user_lesson, back_populates="lessons"
     )
+
+    def todict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "age_rating": Age(self.age_rating).value,
+            "creator_id": self.creator_id,
+            "thumbnail": self.thumbnail,
+            "views": self.views,
+        }
 
 
 from .user import User  # noqa

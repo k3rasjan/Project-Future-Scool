@@ -19,5 +19,14 @@ class Block(db.Model):
     content: Mapped[str] = mapped_column()
     lesson: Mapped["Lesson"] = relationship(back_populates="blocks")
 
+    def todict(self):
+        return {
+            "id": self.id,
+            "lesson_id": self.lesson_id,
+            "type": BlockType(self.type).value,
+            "subtitle": self.subtitle,
+            "content": self.content,
+        }
+
 
 from .lesson import Lesson  # noqa

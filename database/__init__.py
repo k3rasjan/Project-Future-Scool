@@ -3,7 +3,8 @@ from sqlalchemy.orm import DeclarativeBase
 
 
 class Base(DeclarativeBase):
-    pass
+    def todict(self):
+        return {"message": "No todict method on this object class"}
 
 
 db = SQLAlchemy(model_class=Base)
