@@ -3,7 +3,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import Enum as sqlEnum, ForeignKey
 from enum import Enum
 from typing import List
-from .association_tables import user_lesson
+from .association_tables import user_lesson, lesson_tag
 
 
 class Age(Enum):
@@ -30,6 +30,9 @@ class Lesson(db.Model):
     users: Mapped[List["User"]] = relationship(
         secondary=user_lesson, back_populates="lessons"
     )
+    tags: Mapped[List["Tag"]] = relationship(
+        secondary=lesson_tag, back_populates="lessons"
+    )
 
     def todict(self):
         return {
@@ -40,8 +43,11 @@ class Lesson(db.Model):
             "creator_id": self.creator_id,
             "thumbnail": self.thumbnail,
             "views": self.views,
+            "tags": [tag.todict() for tag in self.tags],
+            "creation_date": self.creation_date,
         }
 
 
 from .user import User  # noqa
 from .block import Block  # noqa
+from .tag import Tag  # noqa

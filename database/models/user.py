@@ -23,5 +23,13 @@ class User(db.Model):
         secondary=user_lesson, back_populates="users"
     )
 
+    def todict(self):
+        return {
+            "username": self.username,
+            "email": self.email,
+            "date_of_birth": self.date_of_birth,
+            "avatar": self.avatar,
+        }
+
 
 from .lesson import Lesson  # noqa

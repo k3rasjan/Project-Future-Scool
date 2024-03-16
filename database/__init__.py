@@ -1,10 +1,16 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from datetime import datetime
+from sqlalchemy import DateTime, func
+from abc import abstractmethod
 
 
 class Base(DeclarativeBase):
+    creation_date: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+    @abstractmethod
     def todict(self):
-        return {"message": "No todict method on this object class"}
+        raise NotImplementedError
 
 
 db = SQLAlchemy(model_class=Base)
