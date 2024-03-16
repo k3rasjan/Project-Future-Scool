@@ -1,4 +1,4 @@
-from flask import Blueprint, request, session
+from flask import Blueprint, request, session, jsonify
 from http import HTTPStatus
 from database.models import User
 from sqlalchemy import select, or_
@@ -7,17 +7,18 @@ from uuid import uuid4
 from database import db
 from datetime import date
 from helpers import require_login
+from flask_cors import CORS
 
 authentication = Blueprint("authentication", __name__)
 
 
 @authentication.route("/register/", methods=["POST"])
 def register():
-    username = request.form["username"]
-    password = request.form["password"]
-    password_confirmation = request.form["password-confirmation"]
-    email = request.form["email"]
-    date_of_birth = date.fromisoformat(request.form["date-of-birth"])
+    username = request.json["username"]
+    password = request.json["password"]
+    password_confirmation = request.json["password-confirmation"]
+    email = request.json["email"]
+    date_of_birth = date.fromisoformat(request.json["date-of-birth"])
 
     if (
         not username
@@ -58,8 +59,8 @@ def register():
 
 @authentication.route("/login/", methods=["POST"])
 def login_user():
-    login = request.form["login"]
-    password = request.form["password"]
+    login = request.json["login"]
+    password = request.json["password"]
 
     if not login or not password:
         return {"message": "Missing credentials"}, HTTPStatus.BAD_REQUEST
@@ -109,14 +110,14 @@ def update_password():
 @authentication.route("/update_user_data/", methods=["POST"])
 @require_login
 def update_user_data():
-    username = request.form.get("username")
-    email = request.form.get("email")
+    username = request.json.get("username")
+    email = request.json.get("email")
     try:
-        date_of_birth = date.fromisoformat(request.form.get("date_of_birth"))
+        date_of_birth = date.fromisoformat(request.json.get("date_of_birth"))
     except ValueError:
         return {"message": "Date of Birth not in iso format"}, HTTPStatus.BAD_REQUEST
 
-    avatar = request.form.get("avatar")
+    avatar = request.json.get("avatar")
 
     if not username or not email or not date_of_birth:
         return {"message": "No input provided"}, HTTPStatus.BAD_REQUEST
@@ -130,3 +131,6 @@ def update_user_data():
     db.session.commit()
 
     return {"message": "Successfully updated user data!"}, HTTPStatus.OK
+
+
+CORS(authentication)

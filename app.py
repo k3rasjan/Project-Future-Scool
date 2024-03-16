@@ -17,23 +17,6 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-CORS(app)
-
-
-class myResponse(Response):
-    def __init__(self, response, **kwargs):
-        self.default_mimetype = "application/json"
-        super().__init__(response, **kwargs)
-
-    @classmethod
-    def force_type(cls, rv, environ=None):
-        if isinstance(rv, dict):
-            rv = jsonify(rv)
-        return super(myResponse, cls).force_type(rv, environ)
-
-
-app.response_class = myResponse
-
 app.register_blueprint(authentication)
 app.register_blueprint(lesson_creation)
 app.register_blueprint(fetching_data)
@@ -43,6 +26,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 app.config["SECRET_KEY"] = token_urlsafe(16)
 
 ServerSideSession(app)
+CORS(app)
 
 
 @app.route("/", methods=["GET"])
