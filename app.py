@@ -1,4 +1,4 @@
-from flask import Flask, Response, jsonify, render_template
+from flask import Flask
 from database import db
 from os import path
 from routes import authentication, lesson_creation, fetching_data

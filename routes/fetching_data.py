@@ -50,7 +50,7 @@ def get_lessons_by_views():
     if len(lessons) == 0:
         return {"message": "No lessons found"}, HTTPStatus.NOT_FOUND
 
-    return {"lessons": [lessons]}, HTTPStatus.OK
+    return {"lessons": lessons}, HTTPStatus.OK
 
 
 @fetching_data.route("/get_user_lessons", methods=["GET"])
