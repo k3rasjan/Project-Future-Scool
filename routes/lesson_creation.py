@@ -37,25 +37,25 @@ def create_lesson():
     age_rating = lesson.get("age_rating")
     thumbnail = lesson.get("thumbnail")
     extension = lesson.get("extension")
-    user = session["user"]
-    db.session.add(user)
-    creator_id = user.id
+    # user = session["user"]
+    # db.session.add(user)
+    # creator_id = user.id
     tags = lesson.get("tags")
 
     if not title or not description:
         return {"success": False, "message": "Invalid input"}, HTTPStatus.BAD_REQUEST
 
-    if thumbnail:
-        if not extension:
-            return {"success": False, "message": "No extension"}, HTTPStatus.BAD_REQUEST
-        thumbnail = load_image(thumbnail, extension)
+    # if thumbnail:
+    #     if not extension:
+    #         return {"success": False, "message": "No extension"}, HTTPStatus.BAD_REQUEST
+    #     thumbnail = load_image(thumbnail, extension)
 
     lesson = Lesson(
         title=title,
         description=description,
         age_rating=age_rating,
         thumbnail=thumbnail,
-        creator_id=creator_id,
+        creator_id=1,
     )
 
     db.session.add(lesson)
@@ -68,7 +68,7 @@ def create_lesson():
             if resp not in lesson.tags:
                 lesson.tags.append(resp)
         db.session.commit()
-
+    print(request.json["blocks"])
     for block in request.json["blocks"]:
         (message, status) = create_block(block, lesson.id)
         if not message["success"]:
@@ -81,9 +81,9 @@ def create_lesson():
 
 
 @lesson_creation.route("/deploy/", methods=["POST"])
-@require_login
 def deploy_lesson():
     (message, status) = create_lesson()
+    print(session)
     return {"message": message["message"]}, status
 
 

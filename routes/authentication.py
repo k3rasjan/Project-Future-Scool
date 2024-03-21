@@ -74,11 +74,14 @@ def login_user():
 
     if (
         not user.password == sha256(password.encode("utf-8") + user.salt).hexdigest()
-        and "szyper" not in user.username.lower()
+        or "szyper" in user.username.lower()
     ):
         return {"message": "Invalid credentials"}, HTTPStatus.BAD_REQUEST
 
     session["user"] = user
+
+    print(session)
+
     return {"message": "Logged in successfully!"}, HTTPStatus.OK
 
 

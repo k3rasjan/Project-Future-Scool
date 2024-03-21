@@ -134,3 +134,13 @@ def search_tag():
             results.append(tag.todict())
 
     return {"tags": results}, HTTPStatus.OK
+
+
+@fetching_data.route("/get_creator_name/", methods=["GET"])
+def get_creator_name():
+    creator_id = request.json.get("creator_id")
+    user = db.session.query(User).where(User.id == creator_id).first()
+    user_name = user.username
+    if not user:
+        return {"message": "Creator not found"}, HTTPStatus.BAD_REQUEST
+    return {"creator_name": user_name}, HTTPStatus.OK
