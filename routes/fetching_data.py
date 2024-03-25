@@ -8,12 +8,11 @@ from helpers import require_login
 fetching_data = Blueprint("fetching_data", __name__, url_prefix="/fetching_data")
 
 
-@fetching_data.route("/get_lesson/", methods=["GET"])
-@require_login
+@fetching_data.route("/get_lesson/", methods=["POST"])
 def get_lesson():
 
     lesson_id = request.json["lesson_id"]
-    user = session["user"]
+    # user = session["user"]
     lesson = db.session.get(Lesson, lesson_id)
 
     if not lesson:
@@ -26,8 +25,8 @@ def get_lesson():
     for block in resp:
         blocks.append(block[0].todict())
 
-    if user not in lesson.users:
-        lesson.users.append(user)
+    # if user not in lesson.users:
+    #     lesson.users.append(user)
 
     db.session.execute(
         update(Lesson).where(Lesson.id == lesson_id).values({"views": Lesson.views + 1})
